@@ -1,0 +1,12 @@
+# Code Owners for PocketApp
+# Global ownership - repository maintainer
+* @simo48hour
+
+# GitHub workflows and CI/CD configuration
+/.github/ @simo48hour
+/package.json @simo48hour
+/pnpm-lock.yaml @simo48hour
+
+# Core application architecture
+/app/lib/.server/ @simo48hour
+/app/routes/api.* @simo48hour

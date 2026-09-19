@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: PocketApp Questions & Discussions
+    url: https://github.com/simo48hour/pocketapp/discussions
+    about: Ask questions and discuss features with other PocketApp users.
+  - name: PocketApp Issue Tracker
+    url: https://github.com/simo48hour/pocketapp/issues
+    about: Report bugs and request features for PocketApp.

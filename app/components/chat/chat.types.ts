@@ -1,0 +1,56 @@
+import type { RefCallback } from 'react';
+import type { JSONValue, Message } from 'ai';
+import type { ProviderInfo } from '~/types/model';
+import type { ActionAlert, SupabaseAlert, DeployAlert, LlmErrorAlertType } from '~/types/actions';
+import type { DesignScheme } from '~/types/design-scheme';
+import type { ElementInfo } from '~/components/workbench/Inspector';
+
+export const TEXTAREA_MIN_HEIGHT = 76;
+
+export interface BaseChatProps {
+  textareaRef?: React.RefObject<HTMLTextAreaElement> | undefined;
+  messageRef?: RefCallback<HTMLDivElement> | undefined;
+  scrollRef?: RefCallback<HTMLDivElement> | undefined;
+  showChat?: boolean;
+  chatStarted?: boolean;
+  isStreaming?: boolean;
+  onStreamingChange?: (streaming: boolean) => void;
+  messages?: Message[];
+  description?: string;
+  enhancingPrompt?: boolean;
+  promptEnhanced?: boolean;
+  input?: string;
+  model?: string;
+  setModel?: (model: string) => void;
+  provider?: ProviderInfo;
+  setProvider?: (provider: ProviderInfo) => void;
+  providerList?: ProviderInfo[];
+  handleStop?: () => void;
+  sendMessage?: (event: React.UIEvent, messageInput?: string) => void;
+  handleInputChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  enhancePrompt?: () => void;
+  importChat?: (description: string, messages: Message[]) => Promise<void>;
+  exportChat?: () => void;
+  uploadedFiles?: File[];
+  setUploadedFiles?: (files: File[]) => void;
+  imageDataList?: string[];
+  setImageDataList?: (dataList: string[]) => void;
+  actionAlert?: ActionAlert;
+  clearAlert?: () => void;
+  supabaseAlert?: SupabaseAlert;
+  clearSupabaseAlert?: () => void;
+  deployAlert?: DeployAlert;
+  clearDeployAlert?: () => void;
+  llmErrorAlert?: LlmErrorAlertType;
+  clearLlmErrorAlert?: () => void;
+  data?: JSONValue[] | undefined;
+  chatMode?: 'discuss' | 'build';
+  setChatMode?: (mode: 'discuss' | 'build') => void;
+  append?: (message: Message) => void;
+  designScheme?: DesignScheme;
+  setDesignScheme?: (scheme: DesignScheme) => void;
+  selectedElement?: ElementInfo | null;
+  setSelectedElement?: (element: ElementInfo | null) => void;
+  addToolResult?: ({ toolCallId, result }: { toolCallId: string; result: any }) => void;
+  onWebSearchResult?: (result: string) => void;
+}

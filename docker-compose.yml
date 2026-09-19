@@ -1,0 +1,47 @@
+services:
+  pocketbase:
+    image: ghcr.io/muchobien/pocketbase:latest
+    container_name: pocketapp-db
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    command:
+      - serve
+      - --http=0.0.0.0:8090
+      - --dir=/pb/pb_data
+      - --hooksDir=/pb/pb_hooks
+      - --migrationsDir=/pb/pb_migrations
+    volumes:
+      - ./pb_data:/pb/pb_data
+      - ./pb_migrations:/pb/pb_migrations
+      - ./pb_hooks:/pb/pb_hooks
+
+  pocketapp:
+    image: pocketapp:local
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    container_name: pocketapp-web
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+      - PORT=5173
+      - HOST=0.0.0.0
+      - VITE_POCKETBASE_URL=http://localhost:8090
+      - INTERNAL_PB_URL=http://pocketbase:8090
+      - RUNNING_IN_DOCKER=true
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+        consistency: cached
+      - /app/node_modules
+    depends_on:
+      - pocketbase
+    command: pnpm run dev --host 0.0.0.0
+
+volumes:
+  pb_data:

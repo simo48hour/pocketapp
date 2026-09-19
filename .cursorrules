@@ -1,0 +1,18 @@
+# PocketApp Community Project Rules & Directives
+
+## 1. CODE ARCHITECTURE RULES
+
+### 500-Line Absolute File Size Ceiling
+- Every single file created or edited MUST contain **FEWER THAN 500 LINES OF CODE**.
+- Never create monolithic files. Decompose components, utilities, and routes into modular files (<500 lines each).
+- Top-level components like `App.tsx` must be lean orchestrators (target 40-150 lines, absolute max 500 lines).
+
+### WebContainer & Browser Cross-Origin Isolation
+- Caddy / HTTP headers must preserve Cross-Origin Isolation (`window.crossOriginIsolated === true`):
+  - `Cross-Origin-Opener-Policy: same-origin`
+  - `Cross-Origin-Embedder-Policy: require-corp`
+- Always test with `window.crossOriginIsolated` in mind so WebContainer terminal sessions boot cleanly.
+
+### Community & BYOK Focus
+- This repository is the open-source community edition of PocketApp.
+- All AI features run on a Bring Your Own Key (BYOK) model with direct provider connections (OpenRouter, Anthropic, OpenAI, Google, Groq).
