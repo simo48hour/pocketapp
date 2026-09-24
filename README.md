@@ -8,6 +8,10 @@
     <a href="https://pocketapp.dev"><img src="https://img.shields.io/badge/Live%20Demo-pocketapp.dev-violet.svg" alt="Live Demo" /></a>
     <img src="https://img.shields.io/badge/Node-%3E%3D18.18.0-green.svg" alt="Node" />
   </p>
+
+  <br />
+
+  <img src="docs/assets/pocketapp-preview.png" alt="PocketApp Full-Stack AI Platform Preview" width="100%" />
 </div>
 
 ---
