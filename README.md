@@ -18,8 +18,8 @@
 
 - 🗄️ **Real Database & Collections**: Automatically creates collections, relationships, and access rules in PocketBase.
 - 🔐 **Authentication Out of the Box**: Integrated user signup, login, session management, and auth tokens.
-- ⚡ **In-Browser Execution**: Uses WebContainer technology to boot a live Node.js runtime, terminal, and hot-reloading dev server right in your browser.
-- 🔑 **Bring Your Own Key (BYOK)**: Supports Anthropic Claude 3.7 Sonnet, OpenAI GPT-4o, Google Gemini 2.0 Flash, Groq, DeepSeek, Ollama, and LM Studio.
+- ⚡ **In-Browser Execution**: Uses WebContainer virtualization to boot a live Node.js runtime, terminal, and hot-reloading dev server directly in your browser.
+- 🔑 **Bring Your Own Key (BYOK)**: 100% client-side API key configuration. No signup or subscription required. Supports Anthropic Claude 3.7 Sonnet, OpenAI GPT-4o, Google Gemini 2.0 Flash, Groq, DeepSeek, Ollama, and LM Studio.
 - 📦 **1-Click Clean Export**: Download complete source code with frontend, PocketBase schema, and a standalone `docker-compose.yml` to run anywhere.
 - 🛠️ **AI Error Auto-Fix**: Automatically detects build or runtime errors in the terminal and fixes them with a single click.
 
@@ -27,47 +27,56 @@
 
 ## 🚀 Quickstart (Run Locally in 60 Seconds)
 
-### Prerequisites
-- [Node.js](https://nodejs.org/) (version `>= 18.18.0`)
-- [pnpm](https://pnpm.io/) (`npm i -g pnpm`)
-- [Docker](https://www.docker.com/) (to run the local PocketBase database)
-
-### 1. Clone the Repository
+### Option A: Pure Docker (One-Command Setup)
 ```bash
 git clone https://github.com/simo48hour/pocketapp.git
 cd pocketapp
+docker compose up
 ```
+Open **http://localhost:5173** in your browser.  
+PocketBase database runs automatically alongside the web app at **http://localhost:8090**.
 
-### 2. Install Dependencies
+---
+
+### Option B: Local Node.js Development
+
+#### Prerequisites
+- [Node.js](https://nodejs.org/) (`>= 18.18.0`)
+- [pnpm](https://pnpm.io/) (`npm i -g pnpm`)
+- [Docker](https://www.docker.com/) (to run the local PocketBase database)
+
 ```bash
+# 1. Clone repository
+git clone https://github.com/simo48hour/pocketapp.git
+cd pocketapp
+
+# 2. Install dependencies
 pnpm install
-```
 
-### 3. Start Local PocketBase Database
-```bash
-docker compose up -d
-```
-> PocketBase Admin UI will be available at: **http://127.0.0.1:8090/_/**
+# 3. Start local PocketBase database
+docker compose up -d pocketbase
 
-### 4. Start Development Server
-```bash
+# 4. Start local development server
 pnpm run dev
 ```
-Open **http://localhost:5173** in your browser.
+Open **http://localhost:5173** in your browser.  
+PocketBase Admin UI is available at **http://127.0.0.1:8090/_/**.
 
 ---
 
 ## 🔑 AI Model Configuration (BYOK)
 
-PocketApp is designed with **zero vendor lock-in**. You can configure your API keys in two ways:
+PocketApp is designed with **zero vendor lock-in** and **no accounts or subscriptions required**:
 
-1. **Directly in the UI**: Click on the Settings icon or Model Selector to enter your personal API keys (keys remain safely in your browser storage).
-2. **Via `.env.local`**: Copy `.env.example` to `.env.local` and add your default server keys:
+1. **Directly in the Browser (Recommended)**:  
+   Click the **🔑 API Keys** button in the top navigation bar or enter your key in the BYOK modal on initial launch. Keys remain securely stored in your browser's local storage and are sent directly to the AI provider.
+2. **Via Server Environment**:  
+   Optionally copy `.env.example` to `.env.local` to configure default server-side API keys:
    ```bash
    cp .env.example .env.local
    ```
 
-Supported providers:
+### Supported Providers:
 - **Anthropic** (Claude 3.7 Sonnet, Claude 3.5 Haiku)
 - **OpenAI** (GPT-4o, GPT-4o-mini, o3-mini)
 - **Google Gemini** (Gemini 2.0 Flash, Gemini 1.5 Pro)
