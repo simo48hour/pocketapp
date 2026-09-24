@@ -59,6 +59,7 @@ jobs:
           name: coverage-report
           path: coverage/
           retention-days: 7
+          if-no-files-found: ignore
 
   docker-validation:
     name: Docker Build Validation

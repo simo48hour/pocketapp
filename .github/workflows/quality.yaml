@@ -68,6 +68,7 @@ jobs:
           name: complexity-report
           path: complexity-report/
           retention-days: 7
+          if-no-files-found: ignore
 
   accessibility-tests:
     name: Accessibility Tests
@@ -126,6 +127,7 @@ jobs:
           name: lighthouse-report
           path: lighthouse-report.html
           retention-days: 7
+          if-no-files-found: ignore
 
   pr-size-check:
     name: PR Size Check

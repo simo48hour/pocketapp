@@ -29,6 +29,8 @@
     "lint:fix": "npm run lint -- --fix && prettier app --write",
     "typecheck": "tsc",
     "typegen": "wrangler types",
+    "start": "wrangler pages dev ./build/client --ip 0.0.0.0 --port ${PORT:-5173} --no-show-interactive-dev-session",
+    "dockerstart": "wrangler pages dev ./build/client --ip 0.0.0.0 --port ${PORT:-5173} --no-show-interactive-dev-session",
     "preview": "pnpm run build && pnpm run start",
     "prepare": "husky",
     "clean": "node scripts/clean.js",
